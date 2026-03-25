@@ -30,8 +30,8 @@ NLU-Assignment-2/
 │
 ├── iitj_scraper.ipynb           # Web scraper for IIT Jodhpur corpus
 ├── word2vec_iitj.ipynb          # CBOW & Skip-gram implementation
-├── rnn_name_generation.ipynb    # RNN variants for name generation
-├── TrainingNames.txt            # Indian names dataset (1000 names)
+├── problem-2.ipynb              # RNN variants for name generation
+│        
 │
 ├── iitj_corpus/                 # Scraped corpus data
 │   ├── all_docs.json            # Complete corpus in JSON format
@@ -52,12 +52,14 @@ NLU-Assignment-2/
 │   ├── bilstm.pkl
 │   └── attention_rnn.pkl
 │
-├── cbow_model.pkl               # Trained CBOW model
-├── skipgram_model.pkl           # Trained Skip-gram model
-├── cbow_embeddings_300.npz      # CBOW embeddings (NumPy format)
-├── skipgram_embeddings_300.npz  # Skip-gram embeddings (NumPy format)
-│
-└── *.png                        # Visualizations
+├── Outputs/
+│   ├──TrainingNames.txt            # Indian names dataset (1000 names)
+│   ├──cbow_model.pkl               # Trained CBOW model
+│   ├──skipgram_model.pkl           # Trained Skip-gram model
+│   ├──cbow_embeddings_300.npz      # CBOW embeddings (NumPy format)
+│   ├──skipgram_embeddings_300.npz  # Skip-gram embeddings (NumPy format)
+│   ├──*.png                        # Visualizations
+│                      
 ```
 
 ---
@@ -107,19 +109,6 @@ y_i = softmax(W_out × h)  ∀ context words
 | phd | mtech (0.887), admissions (0.885), postgraduate (0.878) |
 | course | study (0.914), self (0.903), independent (0.892) |
 
-### Visualizations
-
-<p align="center">
-  <img src="wordcloud_iitj.png" width="45%" alt="Word Cloud"/>
-  <img src="pca_comparison.png" width="45%" alt="PCA Comparison"/>
-</p>
-
-<p align="center">
-  <img src="training_loss.png" width="45%" alt="Training Loss"/>
-  <img src="similarity_heatmap.png" width="45%" alt="Similarity Heatmap"/>
-</p>
-
----
 
 ## Problem 2: Name Generation
 
@@ -164,18 +153,6 @@ Thashn, Kijav, Suvrajid, Oopara, Suhan, Viduya, Radminanha, Sanandeet
 ### Key Finding
 > **BiLSTM Failure:** Despite achieving the lowest training loss (0.093), BiLSTM produced only 1.2% realistic names. This demonstrates that bidirectional models are unsuitable for autoregressive generation without architectural modifications — future context isn't available during inference.
 
-### Visualizations
-
-<p align="center">
-  <img src="rnn_comparison.png" width="45%" alt="RNN Comparison"/>
-  <img src="metrics_comparison.png" width="45%" alt="Metrics Comparison"/>
-</p>
-
-<p align="center">
-  <img src="length_distribution.png" width="45%" alt="Length Distribution"/>
-  <img src="bigrams.png" width="45%" alt="Bigrams"/>
-</p>
-
 ---
 
 ## Installation & Usage
@@ -209,7 +186,7 @@ import pickle
 import numpy as np
 
 # Load Word2Vec
-with open('cbow_model.pkl', 'rb') as f:
+with open('Outputs/cbow_model.pkl', 'rb') as f:
     cbow = pickle.load(f)
 
 # Load RNN
@@ -217,7 +194,7 @@ with open('saved_models/attention_rnn.pkl', 'rb') as f:
     rnn_attn = pickle.load(f)
 
 # Load embeddings
-embeddings = np.load('cbow_embeddings_300.npz')
+embeddings = np.load('Outputs/cbow_embeddings_300.npz')
 ```
 
 ---
@@ -252,9 +229,9 @@ embeddings = np.load('cbow_embeddings_300.npz')
 ## Author
 
 **Nishchal**
-B22CS042
-Department of Computer Science & Engineering
-Indian Institute of Technology Jodhpur
+B23CM1053 |
+Department of Computer Science & Engineering |
+Indian Institute of Technology Jodhpur |
 
 ---
 
